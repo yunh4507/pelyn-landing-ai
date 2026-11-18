@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelyn AI · 회의는 끝, 진짜 할 일은 이제부터 시작</title>
+<meta name="description" content="회의 끝나고 정리할 문서, 초안은 크루가 먼저 써둘게요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pelyn AI · 회의는 끝, 진짜 할 일은 이제부터 시작">
+<meta property="og:description" content="회의 끝나고 정리할 문서, 초안은 크루가 먼저 써둘게요.">
+<meta property="og:image" content="/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+
+<!-- ===== Google Analytics 4 =====
+     GA4 측정 ID(G-로 시작)를 아래 GA_ID에 넣으면 활성화됩니다. -->
+<script>
+  window.GA_ID = 'G-XXXXXXXXXX';
+  window.GA_ON = /^G-(?!X+$)[A-Z0-9]+$/.test(window.GA_ID);
+  if (window.GA_ON) {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', window.GA_ID);
+  }
+</script>
+
+<style>
+  :root{ --bg:#0c0e12; --line:rgba(255,255,255,.14); --blue:#3d6bff; --blue-soft:#6f93ff; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+       background:var(--bg);color:#fff;-webkit-font-smoothing:antialiased;word-break:keep-all}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+
+  /* ===== Desktop: 이미지와 같은 좌우 배치 ===== */
+  .page{position:relative;min-height:100vh;display:grid;grid-template-columns:36fr 64fr;
+        background:var(--bg) url('assets/bg-office.jpg') left center/cover no-repeat}
+  .page::before{content:"";position:absolute;inset:0;pointer-events:none;
+        background:linear-gradient(180deg,rgba(12,14,18,0) 40%,rgba(12,14,18,.55) 100%)}
+
+  .hero{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;
+        padding:0 clamp(24px,3.2vw,60px) clamp(48px,7vh,90px)}
+  .hero h1{font-size:clamp(40px,4.5vw,84px);font-weight:800;line-height:1.14;letter-spacing:-.035em}
+  .hero h1 em{font-style:normal;color:var(--blue-soft)}
+  .hero .sub{margin-top:clamp(28px,4vh,56px);font-size:clamp(16px,1.35vw,22px);color:#e3e6eb}
+  .hero .sub strong{color:#fff}
+  .hero .btn{display:none}
+
+  .panel{position:relative;z-index:1;margin:clamp(18px,1.6vw,28px) clamp(18px,1.6vw,28px) clamp(18px,1.6vw,28px) 0;
+         border:1px solid var(--line);border-radius:clamp(24px,2vw,36px);
+         background:#131418;padding:clamp(24px,2.6vw,48px);
+         display:flex;flex-direction:column}
+  .bar{display:flex;align-items:center;gap:clamp(20px,3vw,48px)}
+  .bar .logo{font-weight:800;font-size:clamp(26px,2.6vw,44px);letter-spacing:-.02em;color:var(--blue)}
+  .bar .url{flex:1;background:#26282c;border-radius:999px;padding:clamp(10px,1vw,16px) clamp(20px,2vw,32px);
+            font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(14px,1.3vw,22px);color:#d4d6db}
+  .shot{margin-top:clamp(20px,2.6vw,44px)}
+  .shot img{width:100%;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%),linear-gradient(180deg,transparent 0,#000 4%,#000 92%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%),linear-gradient(180deg,transparent 0,#000 4%,#000 92%,transparent 100%);mask-composite:intersect}
+
+  .closing{margin-top:auto;padding-top:clamp(16px,2vw,32px);text-align:right}
+  .closing p{font-size:clamp(22px,2.3vw,40px);line-height:1.35;letter-spacing:-.02em;color:#e9ebef}
+  .closing p strong{display:block;font-weight:800;color:#fff}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-top:clamp(20px,2.2vw,32px);
+       padding:clamp(14px,1.1vw,18px) clamp(24px,2vw,34px);border-radius:999px;background:var(--blue);color:#fff;
+       font-weight:700;font-size:clamp(16px,1.2vw,19px);box-shadow:0 10px 28px rgba(61,107,255,.35);transition:background .15s,transform .15s}
+  .btn:hover{background:#2f5cf0;transform:translateY(-1px)}
+
+  /* ===== Mobile: 히어로 → CTA → 사용 화면 → 마무리 문구 → CTA ===== */
+  @media (max-width:900px){
+    .page{display:block;background-size:auto 62svh;background-position:12% top;background-color:var(--bg)}
+    .page::before{background:linear-gradient(180deg,rgba(12,14,18,0) 0,rgba(12,14,18,.25) 28svh,var(--bg) 62svh)}
+    .hero{min-height:auto;padding:38svh 20px 0}
+    .hero h1{font-size:clamp(38px,11vw,54px)}
+    .hero .sub{margin-top:18px;font-size:15px}
+    .hero .btn{display:flex;width:100%;margin-top:22px}
+    .panel{margin:28px 12px 16px;border-radius:24px;padding:22px 16px 18px}
+    .bar{gap:16px}
+    .bar .logo{font-size:26px}
+    .bar .url{font-size:14px;padding:10px 18px}
+    .shot{margin-top:18px}
+    .closing{margin-top:22px;padding-top:0;text-align:left}
+    .closing p{font-size:22px}
+    .closing .btn{display:flex;width:100%}
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <section class="hero" aria-label="소개">
+    <h1>회의는 끝,<br>진짜 할 일은<br><em>이제부터 시작.</em></h1>
+    <p class="sub">회의 끝나고 정리할 문서, 초안은 <strong>크루</strong>가 먼저 써둘게요.</p>
+    <a class="btn js-cta" data-loc="hero" href="https://app.pelyn.ai/#/signup">Pelyn AI 시작하기 →</a>
+  </section>
+
+  <section class="panel" aria-label="Pelyn 사용 화면">
+    <div class="bar">
+      <a class="logo js-cta" data-loc="logo" href="https://app.pelyn.ai/#/signup">Pelyn</a>
+      <span class="url">pelyn.ai</span>
+    </div>
+
+    <div class="shot">
+      <img src="assets/product.jpg" width="2000" height="955"
+           alt="① 무엇을 맡길지 한 줄로 적어요. ② 크루의 초안, 우리는 검수만. ③ 녹음된 회의로 실행 계획안까지 바로. Pelyn 업무 맡기기 화면과 크루가 제출한 실행 계획안 초안, 검수 체크리스트">
+    </div>
+
+    <div class="closing">
+      <p>회의 녹음부터 후속 업무 초안까지,<strong>크루에게 맡겨보세요.</strong></p>
+      <a class="btn js-cta" data-loc="panel" href="https://app.pelyn.ai/#/signup">Pelyn AI 시작하기 →</a>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // UTM 파라미터를 가입 링크로 넘기고, CTA 클릭을 GA4 이벤트(cta_click)로 기록
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var out = new URLSearchParams();
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+      if (params.get(k)) out.set(k, params.get(k));
+    });
+    var qs = out.toString();
+    var href = 'https://app.pelyn.ai/' + (qs ? '?' + qs : '') + '#/signup';
+
+    document.querySelectorAll('.js-cta').forEach(function(a){
+      a.href = href;
+      a.addEventListener('click', function(e){
+        if (!window.GA_ON || !window.gtag) return;
+        e.preventDefault();
+        var done = false;
+        var go = function(){ if (!done) { done = true; location.href = href; } };
+        setTimeout(go, 700);
+        gtag('event', 'cta_click', {
+          cta_location: a.getAttribute('data-loc'),
+          utm_campaign: params.get('utm_campaign') || '(none)',
+          utm_content: params.get('utm_content') || '(none)',
+          event_callback: go
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
